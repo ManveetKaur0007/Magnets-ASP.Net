@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ManveetKaurMagnets.Models
 {
@@ -10,7 +11,12 @@ namespace ManveetKaurMagnets.Models
         public string Colour { get; set;}
         public string Type { get; set; }
         public int Power { get; set; }
+
+        [Display(Name = "Customer Review")]
         public string CustomerReview { get; set; }
 
     }
+
+
 }
+

@@ -20,9 +20,16 @@ namespace ManveetKaurMagnets.Controllers
         }
 
         // GET: Magnets
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            return View(await _context.Magnets.ToListAsync());
+            var magnets = from m in _context.Magnets
+                          select m;
+            if (!String.IsNullOrEmpty(searchString))
+
+            {
+                magnets = magnets.Where(s => s.Shape.Contains(searchString));
+            }
+            return View(await magnets.ToListAsync());
         }
 
         // GET: Magnets/Details/5

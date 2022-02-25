@@ -55,7 +55,58 @@ namespace ManveetKaurMagnets.Models
                         Type = "Plastic",
                         Power = 0,
                         CustomerReview = "Discontinue it!"
+                    },
+                    
+                    new Magnets
+                    {
+                        Shape = "Cylinder",
+                        Colour = "Purple",
+                        Type = "Iron",
+                        Power = 8,
+                        CustomerReview = "Good"
+                    },
+
+                    new Magnets
+                    {
+                        Shape = "Disc",
+                        Colour = "Brown",
+                        Type = "Silver",
+                        Power = 6,
+                        CustomerReview = "Excellent"
+                    },
+                    new Magnets
+                    {
+                        Shape = "Ring",
+                        Colour = "White",
+                        Type = "Plastic",
+                        Power = 1,
+                        CustomerReview = "Discontinue it!"
+                    },
+                    new Magnets
+                    {
+                        Shape = "Bar",
+                        Colour = "Orange",
+                        Type = "Aluminium",
+                        Power = 7,
+                        CustomerReview = "Good"
+                    },
+                    new Magnets
+                    {
+                        Shape = "Horse",
+                        Colour = "Dark Green",
+                        Type = "Plastic",
+                        Power = 0,
+                        CustomerReview = "Discontinue it!"
+                    },
+                    new Magnets
+                    {
+                        Shape = "Cylinder",
+                        Colour = "Blue",
+                        Type = "Steel",
+                        Power = 7,
+                        CustomerReview = "Needs a little improvment"
                     }
+
                 );
                 context.SaveChanges();
             }
