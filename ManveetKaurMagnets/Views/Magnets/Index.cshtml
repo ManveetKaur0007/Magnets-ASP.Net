@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ManveetKaurMagnets.Models.Magnets>
+﻿@model ManveetKaurMagnets.Models.MagnetsColourViewModel
 
 @{
     ViewData["Title"] = "Index";
@@ -10,9 +10,13 @@
     <a asp-action="Create">Create New</a>
 </p>
 
-<form asp-controller="Magnets" asp-action="Index">
+<form asp-controller="Magnets" asp-action="Index" method="get">
     <p>
-        Shape: <input type="text" name="SearchString" />
+        <select asp-for="MagnetsColour" asp-items="Model.Colour">
+            <option value="">All</option>
+        </select>
+
+        Shape: <input type="text" asp-for="SearchString" />
         <input type="submit" value="Filter" />
     </p>
 </form>
@@ -21,47 +25,48 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Shape)
+                @Html.DisplayNameFor(model => model.Magnets[0].Shape)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Colour)
+                @Html.DisplayNameFor(model => model.Magnets[0].Colour)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Type)
+                @Html.DisplayNameFor(model => model.Magnets[0].Type)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Power)
+                @Html.DisplayNameFor(model => model.Magnets[0].Power)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CustomerReview)
+                @Html.DisplayNameFor(model => model.Magnets[0].CustomerReview)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Shape)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Colour)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Type)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Power)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CustomerReview)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.Magnets)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Shape)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Colour)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Power)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerReview)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

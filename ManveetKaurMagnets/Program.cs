@@ -6,7 +6,7 @@ using ManveetKaurMagnets.Data;
 using ManveetKaurMagnets.Models;
 using System;
 
-namespace MvcMovie
+namespace ManveetKaurMagnets
 {
     public class Program
     {

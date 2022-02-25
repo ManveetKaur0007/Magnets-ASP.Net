@@ -20,16 +20,33 @@ namespace ManveetKaurMagnets.Controllers
         }
 
         // GET: Magnets
-        public async Task<IActionResult> Index(string searchString)
+        public async Task<IActionResult> Index(string magnetsColour, string searchString)
         {
-            var magnets = from m in _context.Magnets
-                          select m;
-            if (!String.IsNullOrEmpty(searchString))
+            // Use LINQ to get list of genres.
+            IQueryable<string> genreQuery = from m in _context.Magnets
+                                            orderby m.Colour
+                                            select m.Colour;
 
+            var magnets = from m in _context.Magnets
+                         select m;
+
+            if (!string.IsNullOrEmpty(searchString))
             {
                 magnets = magnets.Where(s => s.Shape.Contains(searchString));
             }
-            return View(await magnets.ToListAsync());
+
+            if (!string.IsNullOrEmpty(magnetsColour))
+            {
+                magnets = magnets.Where(x => x.Colour == magnetsColour);
+            }
+
+            var magnetsColourVM = new MagnetsColourViewModel
+            {
+                Colour = new SelectList(await genreQuery.Distinct().ToListAsync()),
+                Magnets = await magnets.ToListAsync()
+            };
+
+            return View(magnetsColourVM);
         }
 
         // GET: Magnets/Details/5
